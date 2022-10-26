@@ -4,7 +4,7 @@
      <!-- apex -->
     <a-row :gutter="24" style="margin-bottom:24px;">
       <a-col :xs="24" :sm="12" :md="12" :lg="6">
-          <chart-min-chart   color="#fd397a" :countValue="count[0]" desc="今日新增客户" type="line" :data="list" separator="" :opacity="0.9"/>
+          <chart-min-chart color="#fd397a" :countValue="count[0]" desc="今日新增客户" type="line" :data="list" separator="" :opacity="0.9"/>
       </a-col>
       <a-col :xs="24" :sm="12" :md="12" :lg="6">
           <chart-min-chart color="#fd7e14" :countValue="count[1]" desc="今日订单量" :data="list" separator=""/>
@@ -16,56 +16,20 @@
           <chart-min-chart color="#ffb822" :countValue="count[3]" desc="今日营业额" type="area" :data="list" :decimals="2" prefix="￥"/>
       </a-col>
     </a-row>
-     <a-row :gutter="24" style="margin-bottom:24px;">
-      <a-col :xs="24" :sm="24" :md="12" :lg="12">
-        <a-card :bordered="false" hoverable>
-          <pie></pie>
-        </a-card>
-      </a-col>
-      <a-col :xs="24" :sm="24" :md="12" :lg="12">
-        <a-card :bordered="false" hoverable>
-          <pie-platelets></pie-platelets>
-        </a-card>
-      </a-col>
-    </a-row>
 
-     <a-row :gutter="24" style="margin-bottom:24px;">
-      <a-col :xs="24" :sm="24" :md="12" :lg="12">
-        <a-card :bordered="false" hoverable>
-          <pie-multi-level></pie-multi-level>
-        </a-card>
-      </a-col>
-      <a-col :xs="24" :sm="24" :md="12" :lg="12">
-        <a-card :bordered="false" hoverable>
-          <point></point>
-        </a-card>
-      </a-col>
-    </a-row>
     <a-row :gutter="24" style="margin-bottom:24px;">
-      <a-col :xs="24" :sm="24" :md="12" :lg="12">
+      <a-col :xs="24" :sm="24" :md="24" :lg="24">
         <a-card :bordered="false" hoverable >
           <dashed/>
         </a-card>
       </a-col>
-      <a-col :xs="24" :sm="24" :md="12" :lg="12">
+      <a-col :xs="24" :sm="24" :md="24" :lg="24">
         <a-card :bordered="false" hoverable>
           <spline-area/>
         </a-card>
       </a-col>
     </a-row>
 
-    <a-row :gutter="24" style="margin-bottom:24px;">
-      <a-col :xs="24" :sm="24" :md="12" :lg="12">
-        <a-card :bordered="false" hoverable>
-          <column-charts/>
-        </a-card>
-      </a-col>
-      <a-col :xs="24" :sm="24" :md="12" :lg="12">
-        <a-card :bordered="false" hoverable>
-          <line-area></line-area>
-        </a-card>
-      </a-col>
-    </a-row>
 </a-spin>
   </div>
 </template>
@@ -74,24 +38,13 @@
 
 import dashed from './apex-charts/dashed'
 import splineArea from './apex-charts/spline-area'
-import columnCharts from './apex-charts/column-charts'
-import lineArea from './apex-charts/line-area'
 import chartMinChart from './template/chart-min-chart'
-import pie from './g2/pie'
-import piePlatelets from './g2/pie-platelets'
-import pieMultiLevel from './g2/pie-multi-level'
-import point from './g2/point'
+
 export default {
   components: {
     dashed,
     splineArea,
-    columnCharts,
-    lineArea,
-    chartMinChart,
-    pie,
-    piePlatelets,
-    pieMultiLevel,
-    point
+    chartMinChart
   },
   data () {
     return {
@@ -107,20 +60,23 @@ export default {
   },
   methods: {
     getData () {
-      this.loading = true
-      this.$api.GET_ANALYSIS().then(r => {
-        this.count = r.data.count
-        this.list = r.data.list
-      }).finally(() => {
-        this.loading = false
-      }).catch(() => {
-        this.list = [2, 5, 3, 7, 9, 3, 4]
-        // alert(1)
-      })
+      this.count = [1, 2, 3, 4]
+      this.list = [1, 2, 3, 4, 5, 6, 7]
+      // this.loading = true
+      // this.$api.GET_ANALYSIS().then(r => {
+      //   this.count = r.data.count
+      //   this.list = r.data.list
+      // }).finally(() => {
+      //   this.loading = false
+      // }).catch(() => {
+      //   this.list = [2, 5, 3, 7, 9, 3, 4]
+      //   // alert(1)
+      // })
     }
   }
 }
 </script>
+
 <style lang="less">
 .current-data {
   padding-right: 10px;

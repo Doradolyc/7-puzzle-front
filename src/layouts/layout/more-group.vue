@@ -60,7 +60,6 @@
         </v-cell>
       </div>
     </a-drawer>
-    <v-chat v-model="chartShow"></v-chat>
   </div>
 </template>
 
